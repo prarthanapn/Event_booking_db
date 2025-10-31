@@ -234,6 +234,50 @@ app.delete('/deleteregistration', async (request, response) => {
     response.status(200).json({ message: 'Registration deleted successfully' });
 });
 
+// Search registration by email
+app.post('/searchregistration', async (request, response) => {
+    let email = request.body.email;
+
+    if (!email) {
+        return response.status(400).json({ message: 'Please provide an email' });
+    }
+
+    let registrations = await Registration.find();
+    let found = registrations.filter((reg) => reg.email.toLowerCase() === email.toLowerCase());
+
+    if (found.length === 0) {
+        return response.status(404).json({ message: 'No registration found with that email' });
+    }
+
+    response.status(200).json({
+        message: 'Registrations found successfully',
+        registrations: found
+    });
+});
+
+// Filter registrations by event title
+app.post('/filterregistration', async (request, response) => {
+    let eventTitle = request.body.eventTitle;
+
+    if (!eventTitle) {
+        return response.status(400).json({ message: 'Please provide an event title' });
+    }
+
+    let registrations = await Registration.find();
+    let found = registrations.filter((reg) => reg.eventTitle.toLowerCase() === eventTitle.toLowerCase());
+
+    if (found.length === 0) {
+        return response.status(404).json({ message: 'No registrations found for this event' });
+    }
+
+    response.status(200).json({
+        message: 'Registrations for event found successfully',
+        registrations: found
+    });
+});
+
+
+
 // start the server
 app.listen(3000, () => {
     console.log("Server running on http://localhost:3000");
