@@ -90,6 +90,8 @@ Server runs on:
 | POST   | `/getoneregistration` | Get one registration by name |
 | PUT    | `/updateregistration` | Update registration details |
 | DELETE | `/deleteregistration` | Delete a registration |
+|SEARCH  | `/searchregistration` | Search registration by email |
+|FILTER  | `/filterregistration` | Filter Registration by eventtitle |
 
 **Sample Body for `/registration`**
 ```json
