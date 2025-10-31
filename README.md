@@ -1,9 +1,3 @@
-API needed for instagram chat feature
-
-1234
-prarthanapn
-
-
 
 # 🎯 Synergia Event Registration & Booking System
 
